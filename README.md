@@ -10,6 +10,9 @@
 | onLoad |文件加载完毕| 该文件的总页码|
 
 
+###demo地址：http://8.131.54.184:8080/pdf-demo/index.html
+###当前版本只支持每页高度相同的pdf，如果高度不统一会出现页间距过大或过小的情况
+
 ## Project setup
 ```
 npm install

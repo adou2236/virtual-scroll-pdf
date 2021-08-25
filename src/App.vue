@@ -6,6 +6,7 @@
     </div>
     <virtual-scroll-pdf class="viewer"
                         :fileSrc="fileSrc"
+                        :scrollLoad="true"
                         @onLoad="loadEnd"></virtual-scroll-pdf>
   </div>
 </template>
