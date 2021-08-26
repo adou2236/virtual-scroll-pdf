@@ -4,7 +4,7 @@
         <pdf v-for="item in filterNum"
              :style="`height:${itemH}px;transform:translateY(${offSetY}px); `"
              :key="item"
-             :src="fileSrc"
+             :src="sourceUrl"
              :page="item+1"
              ></pdf>
       </div>
@@ -12,11 +12,9 @@
 </template>
 
 <script>
-import pdf from 'vue-pdf'
+import vuePdf from 'vue-pdf'
 import CMapReaderFactory from 'vue-pdf/src/CMapReaderFactory.js'
-
-
-
+const pdf = { ...vuePdf, destroyed: undefined };
 
 export default {
   name: 'HelloWorld',
@@ -44,6 +42,7 @@ export default {
       list: 0,    // 展示列表
       offSetY: "", // 动态偏移量
       pdfSource: null,
+      sourceUrl:''
     }
   },
   computed:{
@@ -68,6 +67,7 @@ export default {
     fileSrc(value){
       if(value){
         this.startLoading()
+        this.list=0
       }
     }
   },
@@ -111,6 +111,7 @@ export default {
     startLoading(){
       //防止乱码
       let loadingTask = pdf.createLoadingTask({url:this.fileSrc,CMapReaderFactory})
+      this.sourceUrl = loadingTask
       loadingTask.promise.then(pdf => {
         this.pdfSource = pdf
         this.numPages = pdf.numPages;
