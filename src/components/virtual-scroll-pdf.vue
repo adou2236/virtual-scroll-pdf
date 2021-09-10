@@ -67,6 +67,7 @@ export default {
     fileSrc(value){
       if(value){
         this.startLoading()
+        this.$refs['virtual-scroll'].scrollTop = 0
         this.list=0
       }
     }
